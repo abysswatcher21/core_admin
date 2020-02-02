@@ -1,0 +1,202 @@
+
+/* Custom chart styling */
+.reset-box-sizing,
+.reset-box-sizing *,
+.reset-box-sizing *:before,
+.reset-box-sizing *:after {
+    -webkit-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    box-sizing:content-box;
+}
+
+#chart .jOrgChart {
+    margin:10px;
+    padding:20px;
+}
+
+#chart .jOrgChart table {
+    border-collapse:separate !important;
+}
+
+#chart .jOrgChart table tr td {
+    border:0;
+}
+
+/* Draw the lines */
+#chart .jOrgChart .line {
+    height:20px;
+    width:4px;
+}
+
+#chart .jOrgChart .down {
+    background-color: #ffd60a;
+    margin:0px auto;
+    width:2px;
+}
+
+#chart .jOrgChart .top {
+    border-top: 2px solid #ffd60a;
+}
+
+#chart .jOrgChart .left {
+    border-right: 1px solid #ffd60a;
+}
+
+#chart .jOrgChart .right {
+    border-left: 2px solid #ffd60a;
+}
+
+/* node cell */
+#chart .jOrgChart td {
+    text-align:center;
+    vertical-align:top;
+    padding:0;
+}
+
+/* The node */
+#chart .jOrgChart .node {
+    display:inline-block;
+    width:100px;
+    height:130px;
+    z-index:10;
+    margin:0 2px;
+    padding:10px;
+    font-size:9pt;
+    border-radius: 7px;
+    background-color:#d4d63f;
+    border: 1px solid rgb(204, 204, 204);
+    color:#214762;
+    /*
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -moz-box-shadow:0 8px 6px -6px black;
+    -webkit-box-shadow:0 8px 6px -6px black;
+    */
+    box-shadow:0 8px 6px -6px black;
+}
+
+#chart .jOrgChart .node:hover {
+    /* background-color: #fcba4c; */
+    background: linear-gradient(to bottom, rgb(251, 221, 77) 0%,rgb(252, 186, 76) 100%);
+    border: 1px solid #cccccc;
+}
+
+#chart .jOrgChart .node-empty {
+    background-color:#ccc;
+    font-size:8pt;
+}
+
+#chart .jOrgChart .node-empty:hover {
+    background-color:#ccc;
+    border:1px solid #888;
+}
+
+#chart .jOrgChart .node a {
+    color:#0069d6;
+    text-decoration:none;
+}
+
+#chart .jOrgChart .node a:hover {
+    color:#0069d6;
+}
+
+#chart .jOrgChart .node .node-code {
+    height:15px;
+    margin-bottom:15px;
+    overflow:hidden;
+    font-size:9pt;
+    color:#003366;
+    font-weight:normal;
+}
+
+#chart .jOrgChart .node .node-name {
+    height:20px;
+    margin-top:5px;
+    line-height:18px;
+    overflow:hidden;
+    font-size:9pt;
+}
+
+#chart .jOrgChart .node .node-image {
+    
+}
+
+#chart .jOrgChart .node .node-image img {
+     display: inline-block;
+    width: 50px;
+    max-height: 60px;
+    overflow: hidden;
+    margin: 4px auto 0;
+    border: 2px solid rgb(95, 107, 135);
+    background: #ddd;
+    border-radius: 100%;
+    -moz-border-radius:8px;
+    opacity:1.0;
+    filter:alpha(opacity=100); /* For IE8 and earlier */
+}
+
+#chart .jOrgChart .node .node-image img:hover {
+    opacity:1.0;
+    filter:alpha(opacity=100); /* For IE8 and earlier */
+}
+
+#chart .jOrgChart .node .node-clone {
+    margin:10px auto;
+    padding:5px 0 0 0;
+    height:25px;
+    display:block;
+}
+
+#chart .jOrgChart .node .node-new {
+    margin:10px auto;
+    padding:7px 0 0 0;
+    height:25px;
+    display:block;
+}
+
+#chart .jOrgChart .node .node-separator {
+    width:100%;
+    height:1px;
+    border-top:1px solid #ccc;
+}
+
+#chart .jOrgChart .node .node-blank {
+    margin:27px auto 26px auto;
+    width:48px;
+    height:48px;
+    display:block;
+}
+
+#chart .jOrgChart .node .node-blank img {
+    border:1px solid #666;
+    border-radius:8px;
+    -moz-border-radius:8px;
+    opacity:0.7;
+    filter:alpha(opacity=70); /* For IE8 and earlier */
+}
+
+#chart .jOrgChart .node .node-expand {
+    margin:0 80%;
+    width:16px;
+    height:16px;
+    display:block;
+    cursor:pointer;
+}
+
+#chart .jOrgChart .node .node-expanded {
+    background:url('../images/arrow-up.png') no-repeat;
+}
+
+#chart .jOrgChart .node .node-contracted {
+    background:url('../images/arrow-down.png') no-repeat;
+}
+
+/* jQuery drag 'n drop */
+.drag-active {
+    border-style:dotted !important;
+}
+
+.drop-hover {
+    border-style:solid !important;
+    border-color:#E05E00 !important;
+}

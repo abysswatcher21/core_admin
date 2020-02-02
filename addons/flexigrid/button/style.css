@@ -1,0 +1,23 @@
+
+.flexigrid div.fbutton .selectall, .flexigrid div.fbutton_right .selectall { background: url("images/check-all.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .selectnone, .flexigrid div.fbutton_right .selectnone { background: url("images/check-none.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .add, .flexigrid div.fbutton_right .add { background: url("images/add.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .delete, .flexigrid div.fbutton_right .delete { background: url("images/close.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .publish, .flexigrid div.fbutton_right .publish { background: url("images/bulb_on.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .unpublish, .flexigrid div.fbutton_right .unpublish { background: url("images/bulb_off.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .accept, .flexigrid div.fbutton_right .accept { background: url("images/accept.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .excel, .flexigrid div.fbutton_right .excel { background: url("images/page_excel.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .search, .flexigrid div.fbutton_right .search { background: url("images/magnifier.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .save, .flexigrid div.fbutton_right .save { background: url("images/save_labled.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .sort_up, .flexigrid div.fbutton_right .sort_up { background: url("images/arrow_up.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .sort_down, .flexigrid div.fbutton_right .sort_down { background: url("images/arrow_down.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .detail, .flexigrid div.fbutton_right .detail { background: url("images/detail.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .user, .flexigrid div.fbutton_right .user { background: url("images/user.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .testimony, .flexigrid div.fbutton_right .testimony { background: url("images/balloon-ellipsis.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .cross, .flexigrid div.fbutton_right .cross { background: url("images/cross.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .expand, .flexigrid div.fbutton_right .expand { background: url("images/maximize.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .collapse, .flexigrid div.fbutton_right .collapse { background: url("images/minimize.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .undo, .flexigrid div.fbutton_right .undo { background: url("images/undo.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .check, .flexigrid div.fbutton_right .check { background: url("images/tick.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .print, .flexigrid div.fbutton_right .print { background: url("images/printer.png") no-repeat scroll left center transparent; }
+.flexigrid div.fbutton .upload, .flexigrid div.fbutton_right .upload { background: url("images/upload.png") no-repeat scroll left center transparent; }

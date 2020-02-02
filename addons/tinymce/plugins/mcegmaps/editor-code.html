@@ -1,0 +1,103 @@
+<script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places,weather"></script>
+<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel_packed.js"></script>
+<script>
+    _loadmap = function (id, json) {
+
+        var canva = document.getElementById(id);
+        canva.style.width = json.width + "px";
+        canva.style.height = json.height + "px";
+        var map = new google.maps.Map(canva, {
+            zoom: parseInt(json.zoom),
+            center: new google.maps.LatLng(parseFloat(json.lat), parseFloat(json.lng)),
+            mapTypeId: json.type
+        });
+        if (json.settings) {
+            for (var id in json.settings) map.set(id, json.settings[id] ? true : false);
+        };
+        if(json.settings.weather_layer){
+            object = new google.maps.weather.WeatherLayer({
+                temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
+            });
+            object.setMap(map);
+        }
+        if(json.settings.traffic_layer){
+            object = new google.maps.TrafficLayer();
+            object.setMap(map);
+        }
+        if (json.objects)
+            for (var type in json.objects) {
+                for (var i in json.objects[type]) {
+                    var object = 0;
+                    switch (type) {
+                        case 'Marker':
+                            object = new google.maps.Marker({
+                                position: new google.maps.LatLng(json.objects[type][i][0], json.objects[type][i][1]),
+                                map: map,
+                                title: json.objects[type][i][2]
+                            });
+                            (function (txt) {
+                                google.maps.event.addListener(object, 'click', function () {
+                                    (new google.maps.InfoWindow({
+                                        content: txt
+                                    })).open(map, object);
+                                });
+                            })(json.objects[type][i][2]);
+                        break;
+                    case 'Rectangle':
+                        object = new google.maps.Rectangle({
+                            bounds: new google.maps.LatLngBounds(new google.maps.LatLng(json.objects[type][i][1][0], json.objects[type][i][1][1]), new google.maps.LatLng(json.objects[type][i][2][0], json.objects[type][i][2][1])),
+                            map: map,
+                            strokeColor: json.objects[type][i][0]
+                        });
+                        break;
+                    case 'Polygon':
+                    case 'Polyline':
+                        var path = json.objects[type][i],
+                        array_path = [];
+
+                        for (var j=1;j<path.length;j++) array_path.push(new google.maps.LatLng(path[j][0], path[j][1]));
+                        object = new google.maps[type]({
+                            path: array_path,
+                            map: map,
+                            strokeColor: path[0]
+                        });
+                        break;
+                    case 'Text':
+                        object = new MarkerWithLabel({
+                            position: new google.maps.LatLng(json.objects[type][i][0], json.objects[type][i][1]),
+                            map: map,
+                            labelContent: json.objects[type][i][2],
+                            labelAnchor: new google.maps.Point(22, 0),
+                            labelClass: "labels",
+                            labelStyle: {
+                                opacity: 1.0,
+                                minWidth: '200px',
+                                textAlign: 'left',
+                                fontSize: json.objects[type][i][3]
+                            },
+                            icon: {}
+                        });
+                        break;
+                    case 'Circle':
+                        object = new google.maps.Circle({
+                            radius: json.objects[type][i][3],
+                            center: new google.maps.LatLng(json.objects[type][i][1], json.objects[type][i][2]),
+                            map: map,
+                            strokeColor: json.objects[type][i][0]
+                        });
+                        break;
+                }
+            }
+        }
+    };
+    loadmap = function (id, json) {
+        google.maps.event.addDomListener(window, 'load', function () {
+            _loadmap(id, json)
+        });
+    };
+</script>
+<div id="{{map-id}}"></div>
+<script class="mcegmaps">
+    loadmap("{{map-id}}", {{map-json}});
+</script>
+

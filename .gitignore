@@ -1,0 +1,45 @@
+.DS_Store
+
+_application/cache/*
+!_application/cache/index.html
+!_application/cache/.htaccess
+
+_application/ci_session/*
+!_application/ci_session/index.html
+
+_application/logs/*
+!_application/logs/index.html
+!_application/logs/.htaccess
+
+composer.lock
+
+_application/config/database.php
+
+/vendor/
+
+# IDE Files
+#-------------------------
+nbproject/*
+/nbproject/
+.idea/*
+_application/libraries/phpexcel/nbproject/*
+
+assets/images/administrator/*
+!assets/images/administrator/index.html
+!assets/images/administrator/_default.png
+
+assets/images/cache/*
+!assets/images/cache/index.html
+
+assets/import/*
+!assets/import/index.html
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+
+## VSCode
+.vscode/*

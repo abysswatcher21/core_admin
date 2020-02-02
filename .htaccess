@@ -1,0 +1,6 @@
+<IfModule mod_env.c>
+    SetEnv CI_ENV development
+</IfModule>
+RewriteEngine on
+RewriteCond $1 !^(index\.php|addons|assets|themes|cron|(.*).js|robots\.txt)
+RewriteRule ^(.*)$ index.php/?$1 [L]

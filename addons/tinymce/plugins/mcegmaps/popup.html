@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+    <head>
+        <link rel="stylesheet" type="text/css" href="spinner/jquery-ui.css"/>
+        <link rel="stylesheet" type="text/css" href="default.css"/>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places,geometry,weather"></script>
+        <script type="text/javascript" src="spinner/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="spinner/jquery-ui.js"></script>
+        <script type="text/javascript" src="spinner/jquery.mousewheel.js"></script>
+        <script class="mcegmaps_google" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel_packed.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript" src="map-popup-code.js"></script>
+        <div>
+            <div id="dialog_box" class="box">
+                <div class="wrapper">
+                    <div class="table">
+                        <div class="row">
+                            <div style="width:95px; border-right:1px solid #aaa;" class="cell setting">
+                                <div class="wrapper" style="padding-right:10px;position:relative;">
+                                    <div class="overlay dummy" style="position: absolute; z-index: 2; display: none;"></div>
+                                    <div class="size">
+                                        <label>Width</label>
+                                        <input id="map-width" name="width" class="spinner" size="4"/>
+                                        &nbsp;<span class="measure">px</span>
+                                    </div>
+                                    <div class="size">
+                                        <label>Height</label>
+                                        <input id="map-height" name="height" class="spinner" size="4"/>
+                                        &nbsp;<span class="measure">px</span>
+                                    </div>
+                                    <div class="size">
+                                        <label>Zoom</label>
+                                        <input size="2" id="map-zoom" name="zoom" class="spinner"/>
+                                    </div>
+                                    <button onclick="settingsDialog.open()" class="radio big" id="settings" value="settings"><img src="images/settings.png"><div>Settings</div></button>
+                                    <button onclick="map.doNextMapType()" class="radio big" id="maptype" value="Roadmap"><img id="maptype_img" src="images/roadmap.png"><div id="maptype_title">Roadmap</div></button>
+                                    <!--<button onclick="layersDialog.open()" class="radio big" id="layers" value="layers"><img src="images/layers.png"><div>Layers</div></button>-->
+
+                                    <button class="radio small object" id="Marker" value="Marker" title="Marker"><img src="images/marker_mini.png"></button>
+                                    <button class="radio small object" id="Text" value="Text" title="Text"><img src="images/text_mini.png"></button>
+                                    <button class="radio small object" id="Circle" value="Circle" title="Circle"><img src="images/circle_mini.png"></button>
+                                    <button class="radio small object" id="Rectangle" value="Rectangle" title="Rectangle"><img src="images/rect_mini.png"></button>
+                                    <button class="radio small object" id="Polyline" value="Polyline" title="Line"><img src="images/line_mini.png"></button>
+                                    <button class="radio small object" id="Polygon" value="Polygon" title="Area"><img src="images/area_mini.png"></button>						
+                                </div>
+                            </div>
+                            <div class="cell">
+                                <div class="wrapper" style="padding-left:10px;position:relative;">
+                                    <div class="overlay dummy" style="position: absolute; z-index: 2; width: 10px; display: none;"></div>
+                                    <div style="position:relative;padding:3px 0px;">
+                                        <div class="overlay dummy" style="position: absolute; z-index: 2; display: none;"></div>
+                                        <table cellspacing="0" cellpadding="0" border="0" style="width:100%;vertical-align:middle;">
+                                            <tbody><tr>
+                                                    <td style="width:32px;"><img src="images/search.png"></td>
+                                                    <td>
+                                                        <div id="target_box">
+                                                            <input id="target" type="text" placeholder="Search" autocomplete="off">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody></table>
+                                    </div>
+                                    <div style="height: 475px; position: relative; background-color: rgb(229, 227, 223); overflow: hidden; -webkit-transform: translateZ(0);" id="map-canvas"></div>
+
+                                    <div style="position:absolute;margin-top:-40px;margin-left:5px;width:90%;">
+                                        <div id="finish_path" style="display:none;float:left;">
+                                            <input onclick="insertButtons.finishInsertingShape()" type="button" value="Finish">&nbsp;
+                                                <input onclick="insertButtons.cancelInsertingShape()" type="button" value="Cancel">
+                                                    </div>
+                                                    <div id="colorChooser" style="display:none;float:left;padding-top:6px;padding-left:10px;">
+                                                        <div class="color-item with-color-red" style="background-color:red;"></div>
+                                                        <div class="color-item with-color-yellow" style="background-color:yellow;"></div>
+                                                        <div class="color-item with-color-green" style="background-color:green;"></div>
+                                                        <div class="color-item with-color-#00FFFF" style="background-color:#00FFFF;"></div>
+                                                        <div class="color-item with-color-blue" style="background-color:blue;"></div>
+                                                        <div class="color-item with-color-#FF00FF" style="background-color:#FF00FF;"></div>
+                                                        <div class="color-item with-color-black" style="background-color:black;"></div>
+                                                        <div class="color-item with-color-white" style="background-color:white;"></div>
+                                                    </div>
+                                                    <div id="fontChooser" style="display:none;font-size:12px;text-align:center;padding-top:5px;">
+                                                        <div style="float:left">
+                                                            Font-size:&nbsp;
+                                                        </div>
+                                                        <div class="font-item">8</div>
+                                                        <div class="font-item">12</div>
+                                                        <div class="font-item">16</div>
+                                                        <div class="font-item">20</div>
+                                                        <div class="font-item">24</div>
+                                                        <div class="font-item">36</div>
+                                                        <div class="font-item">72</div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>	
+                                                    </div>
+                                                    </div>
+                                                    </div>
+
+                                                    <div id="layers-form" title="Edit layers settings">
+                                                        <form>
+                                                            <label for="traffic_layer">
+                                                                <input type="checkbox" id="traffic_layer" name="traffic_layer"/>
+                                                                Traffic layer</label>
+                                                            <br/>
+                                                            <label for="weather_layer">
+                                                                <input type="checkbox" id="weather_layer" name="weather_layer"/>
+                                                                Weather layer</label>
+                                                        </form>
+                                                    </div>
+
+                                                    <div id="settings-form" title="Edit map settings">
+                                                        <form>
+                                                            <label for="show_map_type">
+                                                                <input type="checkbox" id="show_map_type" name="mapTypeControl"/>
+                                                                Show map type control</label>
+                                                            <br/>
+                                                            <label for="show_zoom">
+                                                                <input type="checkbox" id="show_zoom" name="zoomControl"/>
+                                                                Show zoom control</label>
+                                                            <br/>
+                                                            <label for="show_rotate">
+                                                                <input type="checkbox" id="show_rotate" name="rotateControl"/>
+                                                                Show rotate control</label>
+                                                            <br/>
+                                                            <label for="show_scale">
+                                                                <input type="checkbox" id="show_scale" name="scaleControl"/>
+                                                                Show scale control</label>
+                                                            <br/>
+                                                            <label for="show_street_view">
+                                                                <input type="checkbox" id="show_street_view" name="streetViewControl"/>
+                                                                Show street view control</label>
+                                                            <br/>
+                                                            <label for="show_pan">
+                                                                <input type="checkbox" id="show_pan" name="panControl"/>
+                                                                Show pan control</label>
+                                                            <br/>
+                                                            <label for="show_map_overview">
+                                                                <input type="checkbox" id="show_map_overview" name="overviewMapControl"/>
+                                                                Show map overview control</label>
+                                                            <br/>
+                                                            <label for="dragging_enabled">
+                                                                <input type="checkbox" id="dragging_enabled" name="draggable"/>
+                                                                Map dragging is enabled</label>
+                                                            <br/>
+                                                            <label for="disable_dblclick_zoom">
+                                                                <input type="checkbox" id="disable_dblclick_zoom" name="disableDoubleClickZoom"/>
+                                                                Disable double click zoom</label>
+                                                        </form>
+                                                    </div>
+                                                    </body>
+                                                    </html>
